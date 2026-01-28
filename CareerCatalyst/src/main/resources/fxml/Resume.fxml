@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainBorderPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.careerplanner.controller.ResumeController">
+   <top>
+      <VBox spacing="10.0" styleClass="header-section" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label styleClass="app-title" text="Career Planner" />
+               </children>
+            </HBox>
+            <HBox spacing="10.0" styleClass="nav-bar">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#navigateToDashboard" styleClass="nav-button" text="Dashboard" />
+                  <Button mnemonicParsing="false" onAction="#navigateToJobTracker" styleClass="nav-button" text="Job Tracker" />
+                  <Button mnemonicParsing="false" styleClass="nav-button, nav-button-active" text="Resume" />
+                  <Button mnemonicParsing="false" onAction="#navigateToResources" styleClass="nav-button" text="Resources" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="15.0" styleClass="content-section" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="headerLabel" styleClass="page-title" text="Resume Builder" />
+            <TabPane fx:id="resumeTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab text="Summary">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="15.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="section-header" text="Resume Title:" />
+                                          <TextField fx:id="resumeTitleField" prefWidth="300.0" promptText="Enter resume title" />
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="section-header" text="Template:" />
+                                          <ComboBox fx:id="templateComboBox" prefWidth="200.0" promptText="Select template" />
+                                       </children>
+                                    </HBox>
+                                    <Label styleClass="section-header" text="Professional Summary" />
+                                    <TextArea fx:id="summaryTextArea" prefHeight="200.0" promptText="Write a brief professional summary highlighting your skills, experience, and career goals." wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Education">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="addEducationButton" mnemonicParsing="false" onAction="#handleAddEducation" styleClass="action-button" text="Add Education" />
+                                          <Button fx:id="editEducationButton" mnemonicParsing="false" onAction="#handleEditEducation" styleClass="secondary-button" text="Edit Education" />
+                                          <Button fx:id="removeEducationButton" mnemonicParsing="false" onAction="#handleRemoveEducation" styleClass="delete-button" text="Remove Education" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="educationTableView" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Experience">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="addExperienceButton" mnemonicParsing="false" onAction="#handleAddExperience" styleClass="action-button" text="Add Experience" />
+                                          <Button fx:id="editExperienceButton" mnemonicParsing="false" onAction="#handleEditExperience" styleClass="secondary-button" text="Edit Experience" />
+                                          <Button fx:id="removeExperienceButton" mnemonicParsing="false" onAction="#handleRemoveExperience" styleClass="delete-button" text="Remove Experience" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="experienceTableView" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Projects">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                       <children>
+                                          <Button fx:id="addProjectButton" mnemonicParsing="false" onAction="#handleAddProject" styleClass="action-button" text="Add Project" />
+                                          <Button fx:id="editProjectButton" mnemonicParsing="false" onAction="#handleEditProject" styleClass="secondary-button" text="Edit Project" />
+                                          <Button fx:id="removeProjectButton" mnemonicParsing="false" onAction="#handleRemoveProject" styleClass="delete-button" text="Remove Project" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="projectsTableView" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Skills &amp; Languages">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <HBox spacing="20.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Label styleClass="section-header" text="Skills" />
+                                          <Label text="These skills are from your profile. Use the Dashboard to add or manage skills." wrapText="true" />
+                                          <ListView fx:id="skillsListView" prefHeight="400.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                             <children>
+                                                <Label styleClass="section-header" text="Languages" />
+                                                <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                                                   <children>
+                                                      <Button fx:id="addLanguageButton" mnemonicParsing="false" onAction="#handleAddLanguage" styleClass="action-button" text="Add Language" />
+                                                      <Button fx:id="removeLanguageButton" mnemonicParsing="false" onAction="#handleRemoveLanguage" styleClass="delete-button" text="Remove Language" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </HBox>
+                                          <ListView fx:id="languagesListView" prefHeight="400.0" VBox.vgrow="ALWAYS" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="References &amp; Additional Info">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="15.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label styleClass="section-header" text="References" />
+                                          <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button fx:id="addReferenceButton" mnemonicParsing="false" onAction="#handleAddReference" styleClass="action-button" text="Add Reference" />
+                                                <Button fx:id="removeReferenceButton" mnemonicParsing="false" onAction="#handleRemoveReference" styleClass="delete-button" text="Remove Reference" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <ListView fx:id="referencesListView" prefHeight="150.0" />
+                                    <Label styleClass="section-header" text="Additional Information" />
+                                    <TextArea fx:id="additionalInfoTextArea" prefHeight="200.0" promptText="Add any additional information you want to include in your resume (certifications, honors, interests, etc.)" wrapText="true" />
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Preview &amp; Export">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox fx:id="previewContainer" spacing="10.0" BorderPane.alignment="CENTER" />
+                           </center>
+                           <bottom>
+                              <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button fx:id="exportPDFButton" mnemonicParsing="false" onAction="#handleExportPDF" styleClass="action-button" text="Export as PDF" />
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" styleClass="footer-section" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="footer-text" text="Career Planner Application v1.0" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

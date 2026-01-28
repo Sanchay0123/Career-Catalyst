@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainBorderPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.careerplanner.controller.ResourcesController">
+   <top>
+      <VBox spacing="10.0" styleClass="header-section" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label styleClass="app-title" text="Career Planner" />
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleRefresh" styleClass="header-button" text="Refresh" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="10.0" styleClass="nav-bar">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#navigateToDashboard" styleClass="nav-button" text="Dashboard" />
+                  <Button mnemonicParsing="false" onAction="#navigateToJobTracker" styleClass="nav-button" text="Job Tracker" />
+                  <Button mnemonicParsing="false" onAction="#navigateToResume" styleClass="nav-button" text="Resume" />
+                  <Button mnemonicParsing="false" styleClass="nav-button, nav-button-active" text="Resources" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="15.0" styleClass="content-section" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="headerLabel" styleClass="page-title" text="Career Resources" />
+            <TabPane fx:id="resourcesTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab text="Resources">
+                     <content>
+                        <BorderPane>
+                           <top>
+                              <VBox spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label text="Filter by Type:" />
+                                          <ComboBox fx:id="resourceTypeFilter" prefWidth="150.0" promptText="All Types" />
+                                          <TextField fx:id="searchResourceField" prefWidth="250.0" promptText="Search resources" HBox.hgrow="ALWAYS" />
+                                          <CheckBox fx:id="showCompletedResourcesCheckBox" mnemonicParsing="false" selected="true" text="Show Completed" />
+                                          <Button mnemonicParsing="false" onAction="#handleAddResource" styleClass="action-button" text="Add Resource" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </top>
+                           <center>
+                              <TableView fx:id="resourcesTableView" BorderPane.alignment="CENTER" />
+                           </center>
+                           <bottom>
+                              <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#handleEditResource" styleClass="secondary-button" text="Edit Resource" />
+                                    <Button mnemonicParsing="false" onAction="#handleRemoveResource" styleClass="delete-button" text="Remove Resource" />
+                                    <Button mnemonicParsing="false" onAction="#handleMarkAsCompleted" styleClass="action-button" text="Mark as Completed" />
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Recommendations">
+                     <content>
+                        <BorderPane>
+                           <top>
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label text="Filter by Skill Category:" />
+                                    <ComboBox fx:id="skillCategoryFilter" prefWidth="150.0" promptText="All Categories" />
+                                 </children>
+                              </HBox>
+                           </top>
+                           <center>
+                              <ListView fx:id="recommendedResourcesListView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+                           </center>
+                           <bottom>
+                              <HBox alignment="CENTER_RIGHT" spacing="10.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button mnemonicParsing="false" onAction="#handleBookmarkResource" styleClass="secondary-button" text="Bookmark" />
+                                    <Button mnemonicParsing="false" onAction="#handleMarkAsCompleted" styleClass="action-button" text="Mark as Completed" />
+                                 </children>
+                              </HBox>
+                           </bottom>
+                        </BorderPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" styleClass="footer-section" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="footer-text" text="Career Planner Application v1.0" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

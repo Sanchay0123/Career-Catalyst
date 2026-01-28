@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainBorderPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.careerplanner.controller.DashboardController">
+   <top>
+      <VBox spacing="10.0" styleClass="header-section" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label styleClass="app-title" text="Career Planner" />
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleEditProfile" styleClass="header-button" text="Edit Profile" />
+                        <Button mnemonicParsing="false" onAction="#handleLogout" styleClass="header-button" text="Logout" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox spacing="10.0" styleClass="nav-bar">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="nav-button, nav-button-active" text="Dashboard" />
+                  <Button mnemonicParsing="false" onAction="#navigateToJobTracker" styleClass="nav-button" text="Job Tracker" />
+                  <Button mnemonicParsing="false" onAction="#navigateToResume" styleClass="nav-button" text="Resume" />
+                  <Button mnemonicParsing="false" onAction="#navigateToResources" styleClass="nav-button" text="Resources" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </top>
+   <center>
+      <VBox spacing="15.0" styleClass="content-section" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="welcomeLabel" styleClass="page-title" text="Welcome, User!" />
+            <TabPane fx:id="dashboardTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <tabs>
+                <Tab text="Skills">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label text="Filter by Category:" />
+                                          <ComboBox fx:id="skillCategoryFilter" prefWidth="150.0" promptText="All Categories" />
+                                          <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#handleAddSkill" styleClass="action-button" text="Add Skill" />
+                                                <Button mnemonicParsing="false" onAction="#handleRemoveSkill" styleClass="delete-button" text="Remove Skill" />
+                                                <Button mnemonicParsing="false" onAction="#handleViewSkillDetails" styleClass="secondary-button" text="View Details" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="skillsTableView" VBox.vgrow="ALWAYS" />
+                                    <BarChart fx:id="skillsChart" legendVisible="false" title="Skills Proficiency Levels">
+                                      <xAxis>
+                                        <CategoryAxis label="Skills" side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis label="Proficiency Level" side="LEFT" tickLabelGap="0.0" upperBound="5.0" />
+                                      </yAxis>
+                                    </BarChart>
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Achievements">
+                     <content>
+                        <BorderPane>
+                           <center>
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label text="Filter by Type:" />
+                                          <ComboBox fx:id="achievementTypeFilter" prefWidth="150.0" promptText="All Types" />
+                                          <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#handleAddAchievement" styleClass="action-button" text="Add Achievement" />
+                                                <Button mnemonicParsing="false" onAction="#handleRemoveAchievement" styleClass="delete-button" text="Remove Achievement" />
+                                                <Button mnemonicParsing="false" onAction="#handleViewAchievementDetails" styleClass="secondary-button" text="View Details" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="achievementsTableView" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab text="Goals">
+                     <content>
+                        <AnchorPane>
+                           <children>
+                              <VBox layoutX="14.0" layoutY="14.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleAddGoal" styleClass="action-button" text="Add Goal" />
+                                          <Button mnemonicParsing="false" onAction="#handleRemoveGoal" styleClass="delete-button" text="Remove Goal" />
+                                          <Button mnemonicParsing="false" onAction="#handleViewGoalDetails" styleClass="secondary-button" text="View Details" />
+                                       </children>
+                                    </HBox>
+                                    <Label styleClass="section-header" text="Short-term Goals" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label text="Progress:" />
+                                          <ProgressBar fx:id="shortTermGoalsProgress" prefWidth="200.0" progress="0.0" />
+                                          <Label fx:id="shortTermProgressLabel" text="0%" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="shortTermGoalsTableView" prefHeight="200.0" VBox.vgrow="ALWAYS" />
+                                    <Label styleClass="section-header" text="Long-term Goals" />
+                                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                       <children>
+                                          <Label text="Progress:" />
+                                          <ProgressBar fx:id="longTermGoalsProgress" prefWidth="200.0" progress="0.0" />
+                                          <Label fx:id="longTermProgressLabel" text="0%" />
+                                       </children>
+                                    </HBox>
+                                    <TableView fx:id="longTermGoalsTableView" prefHeight="200.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10.0" styleClass="footer-section" BorderPane.alignment="CENTER">
+         <children>
+            <Label styleClass="footer-text" text="Career Planner Application v1.0" />
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>
